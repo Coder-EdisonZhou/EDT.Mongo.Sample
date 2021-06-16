@@ -10,6 +10,9 @@ namespace EDT.BookStore.API.Models.Mappings
             CreateMap<UpdateBookDto, Book>()
                 .ForMember(dest => dest.CreatedDate, opt => opt.Ignore())
                 .ReverseMap();
+
+            CreateMap<Contact, ContactViewModel>();
+            CreateMap<Group, GroupViewModel>();
         }
     }
 }

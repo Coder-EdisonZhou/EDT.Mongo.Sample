@@ -25,6 +25,7 @@ namespace EDT.BookStore.API
         {
             services.AddControllers();
             services.AddSingleton<IBookService, BookService>();
+            services.AddSingleton<IContactService, ContactService>();
 
             // Swagger
             services.AddSwaggerGen(c =>
@@ -40,6 +41,10 @@ namespace EDT.BookStore.API
                 Configuration.GetSection(nameof(BookStoreDatabaseSettings)));
             services.AddSingleton<IBookStoreDatabaseSettings>(sp =>
                 sp.GetRequiredService<IOptions<BookStoreDatabaseSettings>>().Value);
+            services.Configure<ContactDatabaseSettings>(
+                Configuration.GetSection(nameof(ContactDatabaseSettings)));
+            services.AddSingleton<IContactDatabaseSettings>(sp =>
+                sp.GetRequiredService<IOptions<ContactDatabaseSettings>>().Value);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
